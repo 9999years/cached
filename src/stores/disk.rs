@@ -269,6 +269,13 @@ where
         }
     }
 
+    fn cache_clear(&self) -> Result<(), Self::Error> {
+        for (key, value) in self.connection.iter().flatten() {
+            self.connection.remove(key)?;
+        }
+        Ok(())
+    }
+
     fn cache_lifespan(&self) -> Option<u64> {
         self.seconds
     }
